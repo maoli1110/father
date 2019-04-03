@@ -7,25 +7,20 @@ use yii\web\Response;
 
 class ArticleController extends ActiveController
 {
-    public $modelClass = 'common\models\Article';  
+    public $modelClass = 'common\models\Article';
     
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_HTML;
+        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
         return $behaviors;
     }
-    
-    public  function actions()
-    {
-        $actions = parent::actions();
-        unset($actions['index']);
-        return $actions;
+    public function actionSearch() {
+        // if (!\Yii::$app->user->can('ArticleAdmin'))
+        // {
+        //     throw new ForbiddenHttpException('对不起，你没有进行该操作的权限。');
+        // }
+        return Article::find()->where(['stuffname' => '张一'])->all();
     }
-    public function actionIndex()
-    {
-        $aObj = Article::find()->one();
-        $result = '<h3>'.$aObj->title.'</h3><p>'.$aObj->content.'</p>';
-        return $result;
-    }
+   
 }

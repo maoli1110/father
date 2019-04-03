@@ -82,7 +82,7 @@ return [
                         ]
                     ],
                     'extraPatterns'=>[
-                        'POST search' => 'search'
+                        'GET search' => 'search'
                     ],
                 ],
                 
@@ -105,6 +105,9 @@ return [
  
                 ['class'=>'yii\rest\UrlRule',
                     'controller'=>'v2/article',
+                    'extraPatterns'=>[
+                        'GET search' => 'search'
+                    ]
                 ],
                 
                 
