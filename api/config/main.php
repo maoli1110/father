@@ -85,7 +85,18 @@ return [
                         'GET search' => 'search'
                     ],
                 ],
-                
+                ['class' => 'yii\rest\UrlRule', 
+                    'controller' => 'stuff',
+                    'ruleConfig'=>[
+                        'class'=>'yii\web\UrlRule',
+                        'defaults'=>[
+                            'expand'=>'createdBy',
+                        ]
+                    ],
+                    'extraPatterns'=>[
+                        'GET search' => 'search'
+                    ],
+                ],
                 ['class'=>'yii\rest\UrlRule',
                     'controller'=>'top10',
                     'except'=>['delete','create','update','view'],
@@ -107,7 +118,17 @@ return [
                     'controller'=>'v2/article',
                     'extraPatterns'=>[
                         'GET search' => 'search',
-                        'POST add' => 'add'
+                        'GET sum' => 'sum',
+                        'POST add' => 'add',
+                        'POST batch' => 'batch'
+                    ]
+                ],
+                ['class'=>'yii\rest\UrlRule',
+                    'controller'=>'v2/stuff',
+                    'extraPatterns'=>[
+                        'GET search' => 'search',
+                        'POST add' => 'add',
+                         'POST batch' => 'batch'
                     ]
                 ],
                 
